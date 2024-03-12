@@ -1,0 +1,45 @@
+{% load static %}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    
+
+    </head>
+    <body>
+        <nav>
+            <ul class = "menu">
+                    <li><a href="{% url "index" %}">Titulní strana</a></li>
+                {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <li><a href="{% url "admin:index" %}">Administrace</a></li>
+                {% endif %}
+                    <li><a href="{% url "password_change" %}">Změna hesla</a></li>
+                    <li><a href="{% url "logout" %}">Odhlášení</a></li>
+                {% else %}
+                    <li><a href="{% url "registration" %}">Registrace</a></li>
+                    <li><a href="{% url "login" %}">Přihlášení</a></li>
+                {% endif %}
+            </ul>
+            <h3>TOP SCORES</h3>
+            <ul class = "top_score">
+                {% for score in top_score %}
+                    <li>{{ score.user }} {{ score.score }}</li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <main>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+<script src = "{% static 'js/scripts.js' %}"></script>
+</html>

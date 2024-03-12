@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+{% block title %}game{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<script>
+const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+</script>
+       <div class="game">
+        <div id="dino"></div>
+        <div id="white_square_right"></div>
+        <div id="cactus1"></div>
+        <div id="cactus2"></div>
+    </div>
+    <center><h3>points<div id="points">score</div></h3></center>
+    <center><button id ="start">start</button></center>
+
+{% if user.is_authenticated %}
+        <h2>YOUR HIGHSCORE</h2  >
+        <ul>
+            {% for score in user_score %}
+            <li>{{ score.score }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+{% endblock %}
+
+
+
+
+
+
