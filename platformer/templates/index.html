@@ -4,27 +4,30 @@
 {% block title %}game{% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
+<div class="high_score">
+       <h3>YOUR HIGHSCORES</h3>
+        <ul class="high_score_text">
+            {% for score in user_score %}
+            <li>{{ score.score }}</li>
+            {% endfor %}
+        </ul></div>
+        {% endif %}
 {% csrf_token %}
 <script>
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 </script>
+<div class="content">
        <div class="game">
         <div id="dino"></div>
         <div id="white_square_right"></div>
+           <div id="white_square_left"></div>
         <div id="cactus1"></div>
         <div id="cactus2"></div>
     </div>
     <center><h3>points<div id="points">score</div></h3></center>
     <center><button id ="start">start</button></center>
-
-{% if user.is_authenticated %}
-        <h2>YOUR HIGHSCORE</h2  >
-        <ul>
-            {% for score in user_score %}
-            <li>{{ score.score }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+</div>
 
 {% endblock %}
 
