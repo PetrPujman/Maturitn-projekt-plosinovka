@@ -7,6 +7,7 @@ const start = document.getElementById("start");
 var score = 0;
 let isAlive;
 let block_start1;
+const start_listener = start.addEventListener('click', onButtonClick);
 
 function onButtonClick() {
     isAlive = setInterval(function () {
@@ -51,10 +52,6 @@ function onButtonClick() {
     start.disabled = true;
 }
 
-
-const start_listener = start.addEventListener('click', onButtonClick);
-
-
 function jump() {
     if (dino.classList != "jump") {
     dino.classList.add("jump");
@@ -79,11 +76,6 @@ function block1() {
     }
 }
 
-function random() {
- const randomNum = 1000 + Math.random() * 1000;
-  return Math.round(randomNum / 100) * 100;
-}
-
 function block2() {
     if (cactus2.classList != "block") {
     cactus2.classList.add("block");
@@ -93,3 +85,8 @@ function block2() {
         }, random());
     }
 }
+
+function random() {
+    const randomNum = 1000 + Math.random() * 1000;
+     return Math.round(randomNum / 100) * 100;
+   }
