@@ -54,4 +54,4 @@ Po spuštění serveru je aplikace dostupná na portu 8300.
 
 # Použití
 
-Hra po spuštění je plně funkční a můžete si v klidu zahrát.
+Hra je po spuštění plně funkční a můžete si v klidu zahrát.
